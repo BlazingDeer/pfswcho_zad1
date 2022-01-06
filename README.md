@@ -24,3 +24,6 @@ Django przy podaniu odpowiednich ustawień dla projektu.
 Baza danych jest kontenerem Dockera i oprócz hasła i nazwy użytkownika nic nie zostało zmienione.
 Wszystkie kontenery są połączone poprzez docker-compose i są uruchamiane poprzez polecenie:
 docker-compose up -d --build
+
+Dokumentacja na stronie zawiera zdjęcia.
+
