@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./zad1_api
+      dockerfile: Dockerfile
+    command: bash -c "python manage.py migrate && python manage.py runserver
+      0.0.0.0:8002"
+    environment:
+      - ENVIRONMENT=container
+    volumes:
+      - ./zad1_api:/code
+    ports:
+      - 8002:8002
+    links:
+      - db
+
+  web:
+    build:
+      context: ./zad1_web
+      dockerfile: Dockerfile
+    command: bash -c "python manage.py migrate && python manage.py runserver
+      0.0.0.0:8000"
+    volumes:
+      - ./zad1_web:/code
+    ports:
+      - 8000:8000
+    links:
+      - api
+
+  db:
+    image: postgres:11
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
